@@ -5,6 +5,8 @@
 import 'package:farmezy_alpha/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
+import './widgets/app_drawer.dart';
+
 class FormScreen extends StatefulWidget {
   @override
   FormScreenState createState() => FormScreenState();
@@ -194,6 +196,7 @@ class FormScreenState extends State<FormScreen> {
           ),
         ),
       ),
+      drawer: AppDrawer(),
     );
   }
 }

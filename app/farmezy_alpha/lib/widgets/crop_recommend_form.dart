@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import '../providers/loc_list.dart';
 import '../screens/crop_recommend_result.dart';
 
+import '../widgets/app_drawer.dart';
+
 class CropRecForm extends StatefulWidget {
+  static const routeName = '/Crop-Recommend-Screen';
+
   @override
   CropRecFormState createState() => CropRecFormState();
 }
