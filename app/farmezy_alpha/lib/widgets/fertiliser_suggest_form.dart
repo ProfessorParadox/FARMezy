@@ -107,42 +107,48 @@ class FertiSuggestFormState extends State<FertiSuggestForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKeyFS,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _buildN(),
-          _buildP(),
-          _buildK(),
-          _buildcropname(),
-          SizedBox(
-            height: 100,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (!_formKeyFS.currentState.validate()) {
-                return;
-              }
-
-              _formKeyFS.currentState.save();
-
-              print(_nitrogen);
-              print(_phosphorus);
-              print(_kalium);
-              print(_cropname);
-
-              //TODO call result screen class()
-              // pass positional args of above vars
-              // FertiSuggestRes();
-            },
-            child: Text(
-              'Submit',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
+      child: ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: 1,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _buildN(),
+              _buildP(),
+              _buildK(),
+              _buildcropname(),
+              SizedBox(
+                height: 100,
               ),
-            ),
-          )
-        ],
+              ElevatedButton(
+                onPressed: () {
+                  if (!_formKeyFS.currentState.validate()) {
+                    return;
+                  }
+
+                  _formKeyFS.currentState.save();
+
+                  print(_nitrogen);
+                  print(_phosphorus);
+                  print(_kalium);
+                  print(_cropname);
+
+                  //TODO call result screen class()
+                  // pass positional args of above vars
+                  // FertiSuggestRes();
+                },
+                child: Text(
+                  'Submit',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }

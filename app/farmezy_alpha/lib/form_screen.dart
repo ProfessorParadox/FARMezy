@@ -18,7 +18,7 @@ class FormScreenState extends State<FormScreen> {
   String _password;
   String _url;
   String _phoneNumber;
-  String _calories;
+  // String _calories;
   int _rating = 1;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -111,23 +111,23 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
-  Widget _buildCalories() {
-    return TextFormField(
-      decoration: InputDecoration(labelText: 'Calories'),
-      keyboardType: TextInputType.number,
-      validator: (String value) {
-        int calories = int.tryParse(value);
+  // Widget _buildCalories() {
+  //   return TextFormField(
+  //     decoration: InputDecoration(labelText: 'Calories'),
+  //     keyboardType: TextInputType.number,
+  //     validator: (String value) {
+  //       int calories = int.tryParse(value);
 
-        if (calories == null || calories <= 0) {
-          return 'Calories must be greater than 0';
-        }
-        return null;
-      },
-      onSaved: (String value) {
-        _calories = value;
-      },
-    );
-  }
+  //       if (calories == null || calories <= 0) {
+  //         return 'Calories must be greater than 0';
+  //       }
+  //       return null;
+  //     },
+  //     onSaved: (String value) {
+  //       _calories = value;
+  //     },
+  //   );
+  // }
 
   Widget _buildRating() {
     return Slider(
@@ -155,44 +155,50 @@ class FormScreenState extends State<FormScreen> {
         margin: EdgeInsets.all(24),
         child: Form(
           key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _buildName(),
-              _buildEmail(),
-              _buildPassword(),
-              _buildURL(),
-              _buildPhoneNumber(),
-              // _buildCalories(),
-              SizedBox(height: 20),
-              Text('Rate us (1-5)', textAlign: TextAlign.left),
-              _buildRating(),
-              SizedBox(height: 100),
-              ElevatedButton(
-                onPressed: () {
-                  if (!_formKey.currentState.validate()) {
-                    return;
-                  }
+          child: ListView.builder(
+            padding: const EdgeInsets.all(8),
+            itemCount: 1,
+            itemBuilder: (BuildContext context, int index) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  _buildName(),
+                  _buildEmail(),
+                  _buildPassword(),
+                  _buildURL(),
+                  _buildPhoneNumber(),
+                  // _buildCalories(),
+                  SizedBox(height: 20),
+                  Text('Rate us (1-5)', textAlign: TextAlign.left),
+                  _buildRating(),
+                  SizedBox(height: 100),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (!_formKey.currentState.validate()) {
+                        return;
+                      }
 
-                  _formKey.currentState.save();
+                      _formKey.currentState.save();
 
-                  print(_name);
-                  print(_email);
-                  print(_password);
-                  print(_url);
-                  print(_phoneNumber);
-                  print(_calories);
-                  print(_rating);
-                },
-                child: Text(
-                  'submit',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-              )
-            ],
+                      print(_name);
+                      print(_email);
+                      print(_password);
+                      print(_url);
+                      print(_phoneNumber);
+                      // print(_calories);
+                      print(_rating);
+                    },
+                    child: Text(
+                      'submit',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  )
+                ],
+              );
+            },
           ),
         ),
       ),

@@ -147,45 +147,51 @@ class _YieldPredictFormState extends State<YieldPredictForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKeyYP,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _buildstatename(),
-          // _buildyear(),
-          _buildseason(),
-          _buildcropname(),
-          _buildrainfall(),
-          SizedBox(
-            height: 100,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (!_formKeyYP.currentState.validate()) {
-                return;
-              }
-
-              _formKeyYP.currentState.save();
-
-              print(_state);
-              print(_year);
-              print(_season);
-              print(_cropname);
-              print(_rainfall);
-
-              //TODO call result screen class()
-              // pass positional args of above vars
-              // rem- pass year value as it is
-              // YieldPredictRes();
-            },
-            child: Text(
-              'Submit',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
+      child: ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: 1,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _buildstatename(),
+              // _buildyear(),
+              _buildseason(),
+              _buildcropname(),
+              _buildrainfall(),
+              SizedBox(
+                height: 100,
               ),
-            ),
-          )
-        ],
+              ElevatedButton(
+                onPressed: () {
+                  if (!_formKeyYP.currentState.validate()) {
+                    return;
+                  }
+
+                  _formKeyYP.currentState.save();
+
+                  print(_state);
+                  print(_year);
+                  print(_season);
+                  print(_cropname);
+                  print(_rainfall);
+
+                  //TODO call result screen class()
+                  // pass positional args of above vars
+                  // rem- pass year value as it is
+                  // YieldPredictRes();
+                },
+                child: Text(
+                  'Submit',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }
