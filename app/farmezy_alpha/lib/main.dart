@@ -24,13 +24,19 @@ class MyApp extends StatelessWidget {
       ),
       home: // CropRecFormScreen(),
           // FertiSuggestFormScreen(),
-          YieldPredictFormScreen(),
+        //  YieldPredictFormScreen(),
       // FertiSuggestRes(),
       // CropRecRes(),
       // YieldPredictRes(),
       // CropVandalismScreen(),
-      // FormScreen(),
+       FormScreen(),
       // DashboardScreen(),
+      routes: {
+        YieldPredictFormScreen.routeName: (ctx)=> YieldPredictFormScreen(),
+        FertiSuggestFormScreen.routeName: (ctx)=> FertiSuggestFormScreen(),
+        CropRecFormScreen.routeName: (ctx)=> CropRecFormScreen(),
+
+      }
     );
   }
 }

@@ -5,10 +5,12 @@
 // which is imported from folder of widgets
 // -- see how to pass values
 
+import 'package:farmezy_alpha/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import '../widgets/crop_recommend_form.dart';
 
 class CropRecFormScreen extends StatefulWidget {
+  static const routeName = '/Crop-Recommend-Screen';
   @override
   CropRecFormScreenState createState() => CropRecFormScreenState();
 }
@@ -26,6 +28,7 @@ class CropRecFormScreenState extends State<CropRecFormScreen> {
         margin: EdgeInsets.all(24),
         child: CropRecForm(),
       ),
+      drawer:AppDrawer(),
     );
   }
 }
