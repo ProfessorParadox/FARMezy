@@ -1,5 +1,9 @@
 # FARMezy
-FARMezy Capstone Project Files
+Our team created an app named FARMezy paired with a Raspberry Pi unit (& sensors), which implements smart farming practices with ease, aiding famers to manage crop plantations & receive market safety (for sales, using blockchain tech) on a unified platform.
+
+*	Design intricate Machine Learning Models running on cloud to provide various predictions; and a live Object Detection Model (Deep L) for crop vandalism alert.
+
+*	Program a Flutter framework & Firebase based mobile application, deployed on Android & iOS Platforms, working in sync with cloud-based models.
 
 ### Project Overview
 * FARMezy is a Smart Farming based system that will provide the farmers with all the necessary tools required for good production. From monitoring the pollution levels to sensing the amount of irrigation required, it will provide all the details at one location. 
