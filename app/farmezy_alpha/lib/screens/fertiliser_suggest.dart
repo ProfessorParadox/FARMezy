@@ -18,7 +18,8 @@ class FertiSuggestFormScreenState extends State<FertiSuggestFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lime.shade100,
+       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Fertiliser Suggestion'),
       ),

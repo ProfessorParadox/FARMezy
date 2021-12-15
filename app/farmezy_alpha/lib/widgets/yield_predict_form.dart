@@ -1,8 +1,12 @@
 // custom form widget code
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../providers/loc_list.dart';
 import '../providers/yield_list.dart';
+import '../providers/yield_predict_provider.dart';
 import '../screens/yield_predict_result.dart';
 
 class YieldPredictForm extends StatefulWidget {
@@ -147,20 +151,38 @@ class _YieldPredictFormState extends State<YieldPredictForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKeyYP,
-      child: ListView.builder(
-        padding: const EdgeInsets.all(8),
-        itemCount: 1,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _buildstatename(),
-              // _buildyear(),
-              _buildseason(),
-              _buildcropname(),
-              _buildrainfall(),
-              SizedBox(
-                height: 100,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _buildstatename(),
+          // _buildyear(),
+          _buildseason(),
+          _buildcropname(),
+          _buildrainfall(),
+          SizedBox(
+            height: 100,
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              if (!_formKeyYP.currentState.validate()) {
+                return;
+              }
+
+              _formKeyYP.currentState.save();
+
+              Provider.of<YieldData>(context,listen: false).yieldPredict(_state, _season, _cropname,double.parse(_rainfall));
+              await Provider.of<YieldData>(context,listen: false).fetchResult();
+              Navigator.of(context).pushReplacementNamed(YieldPredictRes.routeName);
+              //TODO call result screen class()
+              // pass positional args of above vars
+              // rem- pass year value as it is
+              // YieldPredictRes();
+            },
+            child: Text(
+              'Submit',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
               ),
               ElevatedButton(
                 onPressed: () {

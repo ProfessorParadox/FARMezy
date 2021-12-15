@@ -1,6 +1,8 @@
 // custom form widget code
 
+import 'package:farmezy_alpha/providers/yield_predict_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../providers/loc_list.dart';
 import '../screens/crop_recommend_result.dart';
 
@@ -184,22 +186,46 @@ class CropRecFormState extends State<CropRecForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKeyCR,
-      child: ListView.builder(
-        padding: const EdgeInsets.all(8),
-        itemCount: 1,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _buildN(),
-              _buildP(),
-              _buildK(),
-              _buildpH(),
-              _buildrainfall(),
-              _buildstatename(),
-              _buildcityname(),
-              SizedBox(
-                height: 100,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _buildN(),
+          _buildP(),
+          _buildK(),
+          _buildpH(),
+          _buildrainfall(),
+          _buildstatename(),
+          _buildcityname(),
+          SizedBox(
+            height: 100,
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              if (!_formKeyCR.currentState.validate()) {
+                return;
+              }
+
+              _formKeyCR.currentState.save();
+              Provider.of<YieldData>(context,listen: false).cropRecommend(_nitrogen,_phosphorus, _kalium, '23', '60', _pH, double.parse(_rainfall));
+              await Provider.of<YieldData>(context,listen:false).fetchCrop();
+              Navigator.of(context).pushReplacementNamed(CropRecRes.routeName);
+              /*print(_nitrogen);
+              print(_phosphorus);
+              print(_kalium);
+              print(_pH);
+              print(_rainfall);
+              print(_state);
+              print(_city); */
+
+              //TODO call result screen class()
+              // pass positional args of above vars
+              // CropRecRes();
+            },
+            child: Text(
+              'Submit',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
               ),
               ElevatedButton(
                 onPressed: () {

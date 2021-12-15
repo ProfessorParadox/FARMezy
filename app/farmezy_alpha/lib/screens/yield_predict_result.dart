@@ -1,8 +1,10 @@
-// custom feature output screen code
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/yield_predict_provider.dart';
 
+import '../widgets/app_drawer.dart';
 class YieldPredictRes extends StatefulWidget {
+  static const routeName = '/yield-predict-result-screen';
   // const YieldPredictRes({ Key? key }) : super(key: key);
 
   @override
@@ -10,11 +12,13 @@ class YieldPredictRes extends StatefulWidget {
 }
 
 class YieldPredictResState extends State<YieldPredictRes> {
-  int _result = 1967;
+ 
   @override
   Widget build(BuildContext context) {
+  String _result= Provider.of<YieldData>(context,listen: false).yield;
     return Scaffold(
-      backgroundColor: Colors.lime.shade100,
+       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Result'),
       ),
@@ -23,10 +27,11 @@ class YieldPredictResState extends State<YieldPredictRes> {
         child: Column(
           children: [
             Text('Predicted Yield for your plantation is: '),
-            Text('$_result kilograms'),
+            Text('${double.parse(_result)*980} kilograms'),
           ],
         ), //... builderfunc(),
       ),
+      drawer: AppDrawer(),
     );
   }
 }

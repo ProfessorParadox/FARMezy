@@ -20,7 +20,8 @@ class CropRecFormScreenState extends State<CropRecFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lime.shade100,
+       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Crop Recommendation'),
       ),
