@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../providers/fertiliser_list.dart';
 import '../providers/yield_list.dart';
 import '../screens/fertiliser_suggest_result.dart';
-
 class FertiSuggestForm extends StatefulWidget {
   @override
   FertiSuggestFormState createState() => FertiSuggestFormState();
@@ -125,14 +124,18 @@ class FertiSuggestFormState extends State<FertiSuggestForm> {
 
               _formKeyFS.currentState.save();
 
-              print(_nitrogen);
+
+             /* print(_nitrogen);
               print(_phosphorus);
               print(_kalium);
               print(_cropname);
 
+              */
               //TODO call result screen class()
               // pass positional args of above vars
               // FertiSuggestRes();
+              print(int.parse(_nitrogen+_phosphorus+_kalium));
+              Navigator.of(context).pushReplacementNamed(FertiSuggestRes.routeName,arguments: { 'n':_nitrogen,'p':_phosphorus,'k':_kalium  });
             },
             child: Text(
               'Submit',
