@@ -227,9 +227,37 @@ class CropRecFormState extends State<CropRecForm> {
                 color: Colors.white,
                 fontSize: 16,
               ),
-            ),
-          )
-        ],
+              ElevatedButton(
+                onPressed: () {
+                  if (!_formKeyCR.currentState.validate()) {
+                    return;
+                  }
+
+                  _formKeyCR.currentState.save();
+
+                  print(_nitrogen);
+                  print(_phosphorus);
+                  print(_kalium);
+                  print(_pH);
+                  print(_rainfall);
+                  print(_state);
+                  print(_city);
+
+                  //TODO call result screen class()
+                  // pass positional args of above vars
+                  // CropRecRes();
+                },
+                child: Text(
+                  'Submit',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }

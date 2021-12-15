@@ -184,9 +184,36 @@ class _YieldPredictFormState extends State<YieldPredictForm> {
                 color: Colors.white,
                 fontSize: 16,
               ),
-            ),
-          )
-        ],
+              ElevatedButton(
+                onPressed: () {
+                  if (!_formKeyYP.currentState.validate()) {
+                    return;
+                  }
+
+                  _formKeyYP.currentState.save();
+
+                  print(_state);
+                  print(_year);
+                  print(_season);
+                  print(_cropname);
+                  print(_rainfall);
+
+                  //TODO call result screen class()
+                  // pass positional args of above vars
+                  // rem- pass year value as it is
+                  // YieldPredictRes();
+                },
+                child: Text(
+                  'Submit',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }
