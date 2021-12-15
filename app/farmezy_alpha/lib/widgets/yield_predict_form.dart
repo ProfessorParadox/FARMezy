@@ -1,6 +1,6 @@
 // custom form widget code
 
-import 'dart:ffi';
+//import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -170,9 +170,12 @@ class _YieldPredictFormState extends State<YieldPredictForm> {
 
               _formKeyYP.currentState.save();
 
-              Provider.of<YieldData>(context,listen: false).yieldPredict(_state, _season, _cropname,double.parse(_rainfall));
-              await Provider.of<YieldData>(context,listen: false).fetchResult();
-              Navigator.of(context).pushReplacementNamed(YieldPredictRes.routeName);
+              Provider.of<YieldData>(context, listen: false).yieldPredict(
+                  _state, _season, _cropname, double.parse(_rainfall));
+              await Provider.of<YieldData>(context, listen: false)
+                  .fetchResult();
+              Navigator.of(context)
+                  .pushReplacementNamed(YieldPredictRes.routeName);
               //TODO call result screen class()
               // pass positional args of above vars
               // rem- pass year value as it is
@@ -184,36 +187,9 @@ class _YieldPredictFormState extends State<YieldPredictForm> {
                 color: Colors.white,
                 fontSize: 16,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  if (!_formKeyYP.currentState.validate()) {
-                    return;
-                  }
-
-                  _formKeyYP.currentState.save();
-
-                  print(_state);
-                  print(_year);
-                  print(_season);
-                  print(_cropname);
-                  print(_rainfall);
-
-                  //TODO call result screen class()
-                  // pass positional args of above vars
-                  // rem- pass year value as it is
-                  // YieldPredictRes();
-                },
-                child: Text(
-                  'Submit',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-              )
-            ],
-          );
-        },
+            ),
+          ),
+        ],
       ),
     );
   }

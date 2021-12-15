@@ -206,8 +206,15 @@ class CropRecFormState extends State<CropRecForm> {
               }
 
               _formKeyCR.currentState.save();
-              Provider.of<YieldData>(context,listen: false).cropRecommend(_nitrogen,_phosphorus, _kalium, '23', '60', _pH, double.parse(_rainfall));
-              await Provider.of<YieldData>(context,listen:false).fetchCrop();
+              Provider.of<YieldData>(context, listen: false).cropRecommend(
+                  _nitrogen,
+                  _phosphorus,
+                  _kalium,
+                  '23',
+                  '60',
+                  _pH,
+                  double.parse(_rainfall));
+              await Provider.of<YieldData>(context, listen: false).fetchCrop();
               Navigator.of(context).pushReplacementNamed(CropRecRes.routeName);
               /*print(_nitrogen);
               print(_phosphorus);
@@ -227,37 +234,9 @@ class CropRecFormState extends State<CropRecForm> {
                 color: Colors.white,
                 fontSize: 16,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  if (!_formKeyCR.currentState.validate()) {
-                    return;
-                  }
-
-                  _formKeyCR.currentState.save();
-
-                  print(_nitrogen);
-                  print(_phosphorus);
-                  print(_kalium);
-                  print(_pH);
-                  print(_rainfall);
-                  print(_state);
-                  print(_city);
-
-                  //TODO call result screen class()
-                  // pass positional args of above vars
-                  // CropRecRes();
-                },
-                child: Text(
-                  'Submit',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-              )
-            ],
-          );
-        },
+            ),
+          ),
+        ],
       ),
     );
   }
