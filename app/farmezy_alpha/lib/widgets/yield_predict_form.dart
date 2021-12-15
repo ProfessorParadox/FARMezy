@@ -1,8 +1,12 @@
 // custom form widget code
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../providers/loc_list.dart';
 import '../providers/yield_list.dart';
+import '../providers/yield_predict_provider.dart';
 import '../screens/yield_predict_result.dart';
 
 class YieldPredictForm extends StatefulWidget {
@@ -159,19 +163,16 @@ class _YieldPredictFormState extends State<YieldPredictForm> {
             height: 100,
           ),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               if (!_formKeyYP.currentState.validate()) {
                 return;
               }
 
               _formKeyYP.currentState.save();
 
-              print(_state);
-              print(_year);
-              print(_season);
-              print(_cropname);
-              print(_rainfall);
-
+              Provider.of<YieldData>(context,listen: false).yieldPredict(_state, _season, _cropname,double.parse(_rainfall));
+              await Provider.of<YieldData>(context,listen: false).fetchResult();
+              Navigator.of(context).pushReplacementNamed(YieldPredictRes.routeName);
               //TODO call result screen class()
               // pass positional args of above vars
               // rem- pass year value as it is

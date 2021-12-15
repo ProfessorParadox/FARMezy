@@ -1,6 +1,8 @@
 // custom form widget code
 
+import 'package:farmezy_alpha/providers/yield_predict_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../providers/loc_list.dart';
 import '../screens/crop_recommend_result.dart';
 
@@ -198,20 +200,22 @@ class CropRecFormState extends State<CropRecForm> {
             height: 100,
           ),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               if (!_formKeyCR.currentState.validate()) {
                 return;
               }
 
               _formKeyCR.currentState.save();
-
-              print(_nitrogen);
+              Provider.of<YieldData>(context,listen: false).cropRecommend(_nitrogen,_phosphorus, _kalium, '23', '60', _pH, double.parse(_rainfall));
+              await Provider.of<YieldData>(context,listen:false).fetchCrop();
+              Navigator.of(context).pushReplacementNamed(CropRecRes.routeName);
+              /*print(_nitrogen);
               print(_phosphorus);
               print(_kalium);
               print(_pH);
               print(_rainfall);
               print(_state);
-              print(_city);
+              print(_city); */
 
               //TODO call result screen class()
               // pass positional args of above vars

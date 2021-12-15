@@ -4,18 +4,24 @@
 // and then pass all values to firebase ml kit
 // then create state acc to ml model output returned
 
+import 'dart:io';
+
+import '../providers/yield_predict_provider.dart';
+import '../widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../providers/yield_list.dart';
 
 class CropRecRes extends StatefulWidget {
   // const CropRecRes({ Key? key }) : super(key: key);
+  static const routeName = '/crop-recommendation-screen';
 
   @override
   _CropRecResState createState() => _CropRecResState();
 }
 
 class _CropRecResState extends State<CropRecRes> {
-  int _resultIndex = 2;
+ /* int _resultIndex = 2;
   List<int> _resultarray = [2, 6, 8, 10, 15, 20];
 
   String _showresult(List<int> value) {
@@ -25,11 +31,13 @@ class _CropRecResState extends State<CropRecRes> {
     }
     return blank;
   }
-
+*/
   @override
   Widget build(BuildContext context) {
+    final recommendedCrop= Provider.of<YieldData>(context,listen:false).crop;
+    final cropImageUrl= Provider.of<YieldData>(context,listen: false).cropUrl;
     return Scaffold(
-      backgroundColor: Colors.lime.shade100,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Crop Recommendation Result'),
       ),
@@ -39,11 +47,21 @@ class _CropRecResState extends State<CropRecRes> {
           children: [
             Text('Crops Recommended For You: \n'),
             //Text(cropsdata(_resultIndex).toString()),
-            Text(_showresult(_resultarray)),
+           /* Text(_showresult(_resultarray)), */
+           Text(recommendedCrop),
             //_resultIndex.map((index) { Text(cropsdata(index).toString())};),),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Container(
+                //height: MediaQuery.of(context).size.width * 0.5,
+                child: Image.network(cropImageUrl ,fit: BoxFit.cover,),
+              ),
+
+            ),
           ],
         ), //... builderfunc(),
       ),
+      drawer: AppDrawer(),
     );
   }
 }

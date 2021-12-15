@@ -7,7 +7,7 @@ class AirPollutionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lime.shade100,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Air Pollution Levels'),
       ),
