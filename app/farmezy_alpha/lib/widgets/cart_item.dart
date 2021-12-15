@@ -83,9 +83,9 @@ class CartItem extends StatelessWidget {
               title,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
             ),
-            subtitle: Text('Price : \$$price  Quantity : $quantity'),
+            subtitle: Text('Price : \₹$price  Quantity : $quantity'),
             trailing: Text(
-              'Total : \$${price * quantity}',
+              'Total : \₹${price * quantity}',
               style: TextStyle(
                   fontSize: 18,
                   color: Theme.of(context).primaryColor,
