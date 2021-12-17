@@ -50,23 +50,25 @@ class ProductItem extends StatelessWidget {
                     onPressed: () {
                       product.toggleFav(product.id,token,u_id);
                     },
-                    color: Theme.of(context).accentColor,
+                    color: Colors.teal[700],
                   )),
           trailing: IconButton(
             icon: Icon(Icons.shopping_cart),
             onPressed: () {
               cart.addItem(product.id, product.price, product.title);
-              Scaffold.of(context).hideCurrentSnackBar();
-              Scaffold.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: Colors.teal[700],
                 content: Text('Item Added to Cart'),
                 duration: Duration(seconds: 1),
                 action: SnackBarAction(label: 'Undo',
+                textColor: Colors.white,
                 onPressed: (){
                   cart.removeSingleItem(product.id);
                 },),
               ));
             },
-            color: Theme.of(context).accentColor,
+            color: Colors.teal[700],
           ),
         ),
       ),

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "340007917263",
+    "firebase_url": "https://farmezy-7164e-default-rtdb.firebaseio.com",
+    "project_id": "farmezy-7164e",
+    "storage_bucket": "farmezy-7164e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340007917263:android:a646999008f0dfab49c9ba",
+        "android_client_info": {
+          "package_name": "com.gh0st.FARMezy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340007917263-4n4ttb2dgrvnkteppkkn0n381qoohuq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS_fqOvowjo0YJmxxZq6V04dDbX2b672w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340007917263-4n4ttb2dgrvnkteppkkn0n381qoohuq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

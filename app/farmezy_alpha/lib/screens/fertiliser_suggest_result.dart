@@ -44,10 +44,16 @@ class _FertiSuggestResState extends State<FertiSuggestRes> {
       appBar: AppBar(
         title: Text('Fertiliser Suggestion Result'),
       ),
-      body: Container(
-        margin: EdgeInsets.all(24),
-        child: Text(
-            fertidata(_result[_resultIndex]).toString()), //... builderfunc(),
+      body: SingleChildScrollView(
+        child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.all(24),
+            child: Text(
+                fertidata(_result[_resultIndex]).toString(),style: TextStyle(fontSize: 20),), //... builderfunc(),
+          ),
+        ],
+      ),
       ),
     );
   }

@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
+
+
+
 class YieldData with ChangeNotifier {
   String _stateName;
   String _seasonPlanted;
@@ -12,13 +15,18 @@ class YieldData with ChangeNotifier {
   String _n;
   String _p;
   String _k;
-  String _temp;
-  String _humidity;
-  String _ph;
+
+  String _temp='';
+  String _humidity='';
+  String _ph='';
+  String _pm25='';
+  String _soilMoisture='';
+
   String _recommendedCrop;
   String _cropImageUrl;
-  String _animalDetected;
-  String _timeStamp;
+  String _animalDetected='No animal detected';
+  String _timeStamp='';
+  String _imageURL='';
 
   void cropRecommend(String nval, String pval, String kval, String tempval,
       String humidityval, String phval, double rfall) {
@@ -34,6 +42,83 @@ class YieldData with ChangeNotifier {
   String get crop {
     return _recommendedCrop;
   }
+
+
+  String get animalImage{
+    return _imageURL;
+  }
+
+  String get animal{
+    return _animalDetected;
+  }
+
+  String get timeStamp{
+    return _timeStamp;
+  }
+  Future<void> getImageData() async{
+
+    final url='https://farmezy-7164e-default-rtdb.firebaseio.com/image-detection/-Mqpj4y7qlRRegL2H79X.json';
+
+    try{
+      final response= await http.get(url);
+      print(json.decode(response.body));
+      _animalDetected=json.decode(response.body)['label'];
+      _timeStamp=json.decode(response.body)['time-stamp'];
+     // _imageURL='https://firebasestorage.googleapis.com/v0/b/farmezy-7164e.appspot.com/o/output.jpg?alt=media&token=85ea84a2-52c7-4aab-b9cc-db5d3ea6c76a';
+      final temp= await http.get('https://firebasestorage.googleapis.com/v0/b/farmezy-7164e.appspot.com/o/output.jpg');
+      String token=json.decode(temp.body)['downloadTokens'];
+      _imageURL='https://firebasestorage.googleapis.com/v0/b/farmezy-7164e.appspot.com/o/output.jpg?alt=media&token=${token}';
+      notifyListeners();
+    }
+    catch(error){
+      print(error);
+    }
+  }
+
+   Future<void> getSensorData() async {
+
+    final url= 'https://farmezy-7164e-default-rtdb.firebaseio.com/sensorReadings/-MqzDW4ILAo0OvR7KeRA.json';
+
+   try{
+     final response= await http.get(url);
+     print(json.decode(response.body));
+     _temp=json.decode(response.body)['temp'];
+     _humidity=json.decode(response.body)['humidity'];
+     _soilMoisture=json.decode(response.body)['soilMoisture'];
+     _pm25=json.decode(response.body)['pm25'];
+     _ph=json.decode(response.body)['ph'];
+
+     notifyListeners();
+   }
+   catch(error){
+     print(error);
+
+   } 
+  }
+
+  String get tempData{
+    return _temp;
+  }
+
+  String get humidityData{
+    return _humidity;
+  }
+
+  String get pm25Data{
+    return _pm25;
+  }
+
+  String get phData{
+    return _ph;
+  }
+
+  String get soilMoistureData{
+    return _soilMoisture;
+  }
+
+
+
+
 
   Future<void> fetchCrop() async {
     final url = 'https://farmezy-ml-predictions.herokuapp.com/predictCrop';
@@ -98,6 +183,8 @@ final imageRecogUrl = 'https://farmezy-7164e-default-rtdb.firebaseio.com/image-d
   String get cropUrl {
     return _cropImageUrl;
   }
+
+ 
 
   Future<void> fetchResult() async {
     final url = 'https://farmezy-ml-predictions.herokuapp.com/predictYield';

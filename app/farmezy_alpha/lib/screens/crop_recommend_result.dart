@@ -4,6 +4,7 @@
 // and then pass all values to firebase ml kit
 // then create state acc to ml model output returned
 
+//import 'dart:ffi';
 import 'dart:io';
 
 import '../providers/yield_predict_provider.dart';
@@ -21,7 +22,7 @@ class CropRecRes extends StatefulWidget {
 }
 
 class _CropRecResState extends State<CropRecRes> {
- /* int _resultIndex = 2;
+  /* int _resultIndex = 2;
   List<int> _resultarray = [2, 6, 8, 10, 15, 20];
 
   String _showresult(List<int> value) {
@@ -34,8 +35,8 @@ class _CropRecResState extends State<CropRecRes> {
 */
   @override
   Widget build(BuildContext context) {
-    final recommendedCrop= Provider.of<YieldData>(context,listen:false).crop;
-    final cropImageUrl= Provider.of<YieldData>(context,listen: false).cropUrl;
+    final recommendedCrop = Provider.of<YieldData>(context, listen: false).crop;
+    final cropImageUrl = Provider.of<YieldData>(context, listen: false).cropUrl;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -45,18 +46,37 @@ class _CropRecResState extends State<CropRecRes> {
         margin: EdgeInsets.all(24),
         child: Column(
           children: [
-            Text('Crops Recommended For You: \n'),
+            Text(
+              'Crops Recommended For You: \n',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
             //Text(cropsdata(_resultIndex).toString()),
-           /* Text(_showresult(_resultarray)), */
-           Text(recommendedCrop),
+            /* Text(_showresult(_resultarray)), */
+            SizedBox(
+              height: 20,
+            ),
             //_resultIndex.map((index) { Text(cropsdata(index).toString())};),),
             ClipRRect(
               borderRadius: BorderRadius.circular(25),
               child: Container(
                 //height: MediaQuery.of(context).size.width * 0.5,
-                child: Image.network(cropImageUrl ,fit: BoxFit.cover,),
+                child: Image.network(
+                  cropImageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
-
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              recommendedCrop,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: Colors.teal[700]),
             ),
           ],
         ), //... builderfunc(),
