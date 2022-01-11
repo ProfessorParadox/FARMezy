@@ -1,4 +1,6 @@
 # FARMezy
+Evaluation Grade: A
+
 Our team created an app named FARMezy paired with a Raspberry Pi unit (& sensors), which implements smart farming practices with ease, aiding famers to manage crop plantations & receive market safety (for sales, using blockchain tech) on a unified platform.
 
 *	Design intricate Machine Learning Models running on cloud to provide various predictions; and a live Object Detection Model (Deep L) for crop vandalism alert.
